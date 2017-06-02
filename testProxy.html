@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>gml2geojson examples</title>
+</head>
+<body>
+<h2>gml2geojson proxy examples</h2>
+
+
+<!--# baseurl = 'http://geodata.nationaalgeoregister.nl/bestuurlijkegrenzen/wfs?'-->
+<!--# baseurl = 'http://geodata.nationaalgeoregister.nl/wijkenbuurten2016/wfs?SERVICE=WFS&VERSION=1.1.0&REQUEST=GetFeature&SRS=EPSG%3A28992&OUTPUTFORMAT=text%2Fxml%3B+subtype%3Dgml%2F3.2&TYPENAME=wijkenbuurten2016%3Agemeenten2016&RESULTTYPE=results'-->
+<!--# baseurl = 'http://geodata.nationaalgeoregister.nl/wijkenbuurten2016/wfs?'-->
+<!--# baseurl = 'http://win371.ad.utwente.nl/cgi-bin/mapserv.exe?map=//win371.ad.utwente.nl/staff/kobben/thailand/config_wfs.map'-->
+<!--# baseurl = 'http://win371.ad.utwente.nl/cgi-bin/mapserv.exe?map=//win371.ad.utwente.nl/staff/kobben/thailand/config_wfs_3857.map'-->
+
+<!--# layerName = 'bestuurlijkegrenzen:provincies'-->
+<!--# layerName = 'wijkenbuurten2016:gemeenten2016'-->
+<!--# layerName = 'airportsWFS'-->
+<!--# layerName = 'airportsWFS3857'-->
+
+<!--# extraParams = '&BBOX=104,12,105,20'-->
+<!--# extraParams = '&MAXFEATURES=2'-->
+<!--# extraParams = '&OUTPUTFORMAT=text%2Fxml%3B+subtype%3Dgml%2F2.1.2'-->
+
+Testing gml2geojson proxy (http://kartoweb.itc.nl/gml2geojson/gml2geojson.py?url=)<br>
+<br>
+
+
+</p><p>Most basic format url to provide: base url + TYPENAME<br>
+<a target="_blank"s
+   href="http://kartoweb.itc.nl/gml2geojson/gml2geojson.py?url=http://geodata.nationaalgeoregister.nl/bestuurlijkegrenzen/wfs?TYPENAMES=bestuurlijkegrenzen:provincies">
+    http://geodata.nationaalgeoregister.nl/bestuurlijkegrenzen/wfs?TYPENAME=bestuurlijkegrenzen:provincies
+    </a>
+
+</p><p>TYPENAME is required for ogr2ogr to request layer<br>
+<a target="_blank"
+   href="http://kartoweb.itc.nl/gml2geojson/gml2geojson.py?url=http://geodata.nationaalgeoregister.nl/bestuurlijkegrenzen/wfs?">
+    http://geodata.nationaalgeoregister.nl/bestuurlijkegrenzen/wfs?
+    </a>
+
+</p><p>TYPENAMES (WFS 2.0.0 spec) is also accepted (but will fail if >1 layer)<br>
+<a target="_blank"
+   href="http://kartoweb.itc.nl/gml2geojson/gml2geojson.py?url=http://geodata.nationaalgeoregister.nl/bestuurlijkegrenzen/wfs?TYPENAMES=bestuurlijkegrenzen:provincies">
+    http://geodata.nationaalgeoregister.nl/bestuurlijkegrenzen/wfs?TYPENAMES=bestuurlijkegrenzen:provincies
+    </a>
+
+</p><p>Mapserver MAP parameters are properly attached to base url<br>
+<a target="_blank"
+   href="http://kartoweb.itc.nl/gml2geojson/gml2geojson.py?uRl=http://geoserver.itc.nl/cgi-bin/mapserv.exe?map=D:/Inetpub/mapserver/wfs_config.map&TYPENAME=AirportsWFS">
+    http://kartoweb.itc.nl/cgi-bin/mapserv.exe?map=D:/Inetpub/mapserver/wfs_config.map &TYPENAME=AirportsWFS
+    </a>
+
+</p><p>Limited testing of additional parameters is done
+(SERVICE, REQUEST, RESULTTYPE)<br>
+<a target="_blank"
+   href="http://kartoweb.itc.nl/gml2geojson/gml2geojson.py?url=http://geodata.nationaalgeoregister.nl/wijkenbuurten2016/wfs?&SERVICE=WMS&VERSION=1.1.0&REQUEST=DescribeFeatureType&SRSNAME=EPSG%3A28992&OUTPUTFORMAT=text%2Fxml%3B+subtype%3Dgml%2F3.2&TYPENAME=wijkenbuurten2016%3Agemeenten2016&RESULTTYPE=hits">
+    http://geodata.nationaalgeoregister.nl/wijkenbuurten2016/wfs?&SERVICE=WMS&VERSION=1.1.0&REQUEST=DescribeFeatureType&SRS=EPSG%3A28992&OUTPUTFORMAT=GML2 &TYPENAME=wijkenbuurten2016%3Agemeenten2016&RESULTTYPE=hits
+    </a>
+
+    </p><p>All other parameters are unfiltered: send forward to ogr2ogr, but not garantueed to work. E.g. this does work...<br>
+<a target="_blank"
+   href="http://kartoweb.itc.nl/gml2geojson/gml2geojson.py?url=http://geodata.nationaalgeoregister.nl/bestuurlijkegrenzen/wfs?SERVICE=WFS&VERSION=1.1.0&REQUEST=GetFeature&SRSNAME=EPSG%3A28992&OUTPUTFORMAT=GML3&TYPENAME=bestuurlijkegrenzen:provincies">
+    http://kartoweb.itc.nl/gml2geojson/gml2geojson.py?url=http://geodata.nationaalgeoregister.nl/bestuurlijkegrenzen/wfs?SERVICE=WFS&VERSION=1.1.0&REQUEST=GetFeature&SRSNAME=EPSG%3A28992&OUTPUTFORMAT=GML3 &TYPENAME=bestuurlijkegrenzen:provincies
+    </a>
+
+    </p><p>...but this not (because ogr2ogr chokes on the OUTPUTFORMAT)<br>
+<a target="_blank"
+   href="http://kartoweb.itc.nl/gml2geojson/gml2geojson.py?url=http://geodata.nationaalgeoregister.nl/bestuurlijkegrenzen/wfs?SERVICE=WFS&VERSION=1.1.0&REQUEST=GetFeature&SRSNAME=EPSG%3A28992&OUTPUTFORMAT=text%2Fxml%3B+subtype%3Dgml%2F3.2&TYPENAME=bestuurlijkegrenzen:provincies">
+    http://kartoweb.itc.nl/gml2geojson/gml2geojson.py?url=http://geodata.nationaalgeoregister.nl/bestuurlijkegrenzen/wfs?SERVICE=WFS&VERSION=1.1.0&REQUEST=GetFeature&SRSNAME=EPSG%3A28992&OUTPUTFORMAT=text/xml; subtype=gml/3.2 &TYPENAME=bestuurlijkegrenzen:provincies
+    </a>
+
+
+
+</p>
+
+</body>
+</html>

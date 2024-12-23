@@ -1,6 +1,6 @@
 # gml2geojson is a a GML-to-GeoJSON proxy using Python. 
 
-# becuase of enshittiofiaction of GitHub, we moved to University Twente Gitlab: https://gitlab.utwente.nl/kobben/TMT/
+## because of enshittification of GitHub, we moved to University Twente Gitlab: https://gitlab.utwente.nl/kobben/TMT/
 
 It a simple Python CGI application, to wrap ogr2ogr functionality to convert WFS GML output into GeoJSON, in a web service. 
 
